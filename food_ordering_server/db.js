@@ -46,6 +46,8 @@ db.sequelize = sequelize;
 
 db.user = require('./models/user.model')(sequelize, Sequelize);
 db.role = require('./models/role.model')(sequelize, Sequelize);
+db.store = require('./models/store.model')(sequelize, Sequelize);
+db.item = require('./models/item.model')(sequelize, Sequelize);
 
 //create many-to-many relationship between users and roles
 
@@ -60,5 +62,19 @@ db.user.belongsToMany(db.role,{
 	otherKey : 'roleId'
 });
 
+
+//many-to-many relationship between store and items
+
+db.store.belongsToMany(db.item,{
+	through : 'store_items',
+	foreignKey : 'storeId',
+	otherKey : 'itemId'
+});
+
+db.item.belongsToMany(db.store, {
+	through : 'store_items',
+	foreignKey : itemId,
+	otherKey : storeId
+});
 
 module.exports = db;
