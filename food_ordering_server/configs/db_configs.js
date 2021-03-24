@@ -2,7 +2,7 @@ var config = {
 	development:{
 		host : '127.0.0.1',
 		user : 'root',
-		password : 'harshit26',
+		password : '',
 		database : 'test_db',
 		debug : true,
 		dialect : 'mysql'
