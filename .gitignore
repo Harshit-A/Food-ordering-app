@@ -104,4 +104,4 @@ dist
 .tern-port
 
 #config file
-/food_ordering_server/configs/d_configs.js
+/food_ordering_server/configs/db_configs.js
