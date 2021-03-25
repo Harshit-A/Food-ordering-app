@@ -20,7 +20,7 @@ verifyToken =(req,res,next) =>{
 		req.userId = result.id;
 		next();
 	});
-}
+};
 
 checkDuplicateEmail = (req,res,next) =>{
 	console.log(req.body.name);
@@ -44,5 +44,7 @@ const authMiddlewares ={
 	checkDuplicateEmail: checkDuplicateEmail,
 	verifyToken : verifyToken
 };
+
+
 
 module.exports = authMiddlewares;

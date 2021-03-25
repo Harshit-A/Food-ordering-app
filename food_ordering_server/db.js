@@ -48,7 +48,7 @@ db.user = require('./models/user.model')(sequelize, Sequelize);
 db.role = require('./models/role.model')(sequelize, Sequelize);
 db.store = require('./models/store.model')(sequelize, Sequelize);
 db.item = require('./models/item.model')(sequelize, Sequelize);
-
+db.storeItem = require('./models/storeItem.model')(sequelize, Sequelize);
 //create many-to-many relationship between users and roles
 
 db.role.belongsToMany(db.user,{
@@ -66,11 +66,11 @@ db.user.belongsToMany(db.role,{
 //many-to-many relationship between store and items
 
 db.store.belongsToMany(db.item,{
-	through : 'store_items'
+	through : db.storeItem
 });
 
 db.item.belongsToMany(db.store, {
-	through : 'store_items'
+	through : db.storeItem
 });
 
 module.exports = db;

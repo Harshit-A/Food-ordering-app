@@ -11,9 +11,6 @@ module.exports = (sequelize,Sequelize) =>{
 		price : {
 			type : Sequelize.DECIMAL(10,2)
 		},
-		available_quantity : {
-			type : Sequelize.INTEGER
-		},
 		non_veg : {
 			type : Sequelize.STRING
 		},
