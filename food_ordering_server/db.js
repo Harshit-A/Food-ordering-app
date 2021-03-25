@@ -66,15 +66,11 @@ db.user.belongsToMany(db.role,{
 //many-to-many relationship between store and items
 
 db.store.belongsToMany(db.item,{
-	through : 'store_items',
-	foreignKey : 'storeId',
-	otherKey : 'itemId'
+	through : 'store_items'
 });
 
 db.item.belongsToMany(db.store, {
-	through : 'store_items',
-	foreignKey : itemId,
-	otherKey : storeId
+	through : 'store_items'
 });
 
 module.exports = db;

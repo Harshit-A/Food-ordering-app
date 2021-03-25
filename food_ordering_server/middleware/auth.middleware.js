@@ -22,8 +22,6 @@ verifyToken =(req,res,next) =>{
 	});
 }
 
-
-
 checkDuplicateEmail = (req,res,next) =>{
 	console.log(req.body.name);
 	User.findOne({
