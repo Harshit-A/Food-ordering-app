@@ -49,6 +49,9 @@ db.role = require('./models/role.model')(sequelize, Sequelize);
 db.store = require('./models/store.model')(sequelize, Sequelize);
 db.item = require('./models/item.model')(sequelize, Sequelize);
 db.storeItem = require('./models/storeItem.model')(sequelize, Sequelize);
+db.order = require('./models/order.model')(sequelize, Sequelize);
+db.address = require('./models/address.model')(sequelize, Sequelize);
+
 //create many-to-many relationship between users and roles
 
 db.role.belongsToMany(db.user,{
@@ -62,6 +65,9 @@ db.user.belongsToMany(db.role,{
 	otherKey : 'roleId'
 });
 
+db.user.hasMany(db.address);
+db.address.belongsTo(db.user);
+
 
 //many-to-many relationship between store and items
 
@@ -71,6 +77,23 @@ db.store.belongsToMany(db.item,{
 
 db.item.belongsToMany(db.store, {
 	through : db.storeItem
+});
+
+//relationships for orders table
+
+db.user.hasMany(db.order);
+db.order.belongsTo(db.user);
+db.store.hasMany(db.order);
+db.order.belongsTo(db.store);
+db.order.belongsTo(db.address);
+db.address.hasMany(db.order);
+
+
+db.order.belongsToMany(db.item, {
+	through : 'order_items'
+});
+db.item.belongsToMany(db.order , {
+	through : 'order_items'
 });
 
 module.exports = db;
